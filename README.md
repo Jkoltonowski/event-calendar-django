@@ -4,9 +4,7 @@ Funkcjonalności
 Widok miesięczny wydarzeń.
 Filtracja wydarzeń po tagach.
 Szczegóły każdego wydarzenia.
-Zgodność z WCAG (dostępność dla osób z niepełnosprawnościami).
-Wsparcie dla Dockera w celu ułatwienia wdrożenia.
-Testy jednostkowe dla widoków i modeli.
+
 
 Wymagania
 Python 3.9 lub nowszy
