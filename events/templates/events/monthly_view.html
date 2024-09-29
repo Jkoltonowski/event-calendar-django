@@ -1,0 +1,66 @@
+{% extends 'events/base.html' %}
+
+{% block title %}Wydarzenia na {{ month }}/{{ year }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="display-5 text-center mb-5">Wydarzenia na {{ month }}/{{ year }}</h1>
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <a href="{% url 'monthly_view' previous_year previous_month %}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Poprzedni miesiąc
+            </a>
+
+
+            <a href="{% url 'monthly_view' next_year next_month %}" class="btn btn-outline-secondary">
+                Następny miesiąc <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+
+        <form method="GET" action="{% url 'monthly_view' year month %}" aria-label="Filtruj wydarzenia po tagach" class="mb-4">
+            <input type="hidden" name="year" value="{{ year }}">
+            <input type="hidden" name="month" value="{{ month }}">
+
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <label class="input-group-text" for="tag-select">
+                            <i class="bi bi-filter"></i> Filtruj poprzez tagi
+                        </label>
+                        <select class="form-select" id="tag-select" name="tag" aria-label="Filtruj wydarzenia po tagach" onchange="this.form.submit()">
+                            <option value="">Wszystkie tagi</option>
+                            {% for tag in tags %}
+                                <option value="{{ tag }}" {% if selected_tag == tag %}selected{% endif %}>
+                                    {{ tag }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="row g-4">
+            {% for event in events %}
+            <div class="col-md-4 d-flex">
+                <div class="card shadow-sm h-100 border-0">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ event.name }}</h5>
+                        <p class="card-text text-muted">{{ event.short_description }}</p>
+
+                        <p class="text-muted"><strong>Start:</strong> {{ event.start_time|date:"d.m.Y, H:i" }}</p>
+                        
+                        <a href="{% url 'event_detail' event.id %}" class="btn btn-primary mt-auto" aria-label="Sprawdź szczegóły wydarzenia {{ event.name }}">
+                            Sprawdź szczegóły
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-md-12 text-center">
+                <p class="text-muted">Brak wydarzeń dla tego tagu.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
