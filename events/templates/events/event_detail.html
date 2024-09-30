@@ -37,9 +37,19 @@
     </section>
 
     <div class="text-center">
-        <a href="{% url 'monthly_view_default' %}" class="btn btn-outline-secondary btn-lg shadow-sm" aria-label="Powrót do listy wydarzeń">
-            <i class="bi bi-arrow-left"></i> Powrót do listy wydarzeń
-        </a>
+        {% if request.GET.view == 'calendar' %}
+            <a href="{% url 'calendar_view' %}" class="btn btn-outline-secondary btn-lg shadow-sm" aria-label="Powrót do kalendarza">
+                <i class="bi bi-arrow-left"></i> Powrót do kalendarza
+            </a>
+        {% elif request.GET.view == 'tiles' %}
+            <a href="{% url 'monthly_view_default' %}" class="btn btn-outline-secondary btn-lg shadow-sm" aria-label="Powrót do widoku kafelkowego">
+                <i class="bi bi-arrow-left"></i> Powrót do wydarzeń
+            </a>
+        {% else %}
+            <a href="{% url 'monthly_view_default' %}" class="btn btn-outline-secondary btn-lg shadow-sm" aria-label="Powrót do listy wydarzeń">
+                <i class="bi bi-arrow-left"></i> Powrót do listy wydarzeń
+            </a>
+        {% endif %}
     </div>
 </article>
 {% endblock %}

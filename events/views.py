@@ -91,6 +91,7 @@ def get_available_tags_from_api():
         return response.json()  
     return []
 def calendar_view(request):
+    
     selected_tag = request.GET.get('tag')  
     events = get_events_from_api()
     
@@ -106,3 +107,5 @@ def calendar_view(request):
         'year': datetime.now().year,
         'month': datetime.now().month
     })
+def home(request):
+    return render(request, 'events/home.html')

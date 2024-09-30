@@ -1,0 +1,15 @@
+{% extends 'events/base.html' %}
+
+{% block title %}Wybierz widok{% endblock %}
+
+{% block content %}
+    <div class="container text-center mt-5">
+        <h1 class="display-4">Wybierz widok wydarzeń</h1>
+        <p class="lead">Możesz przeglądać wydarzenia w różnych formatach. Wybierz ten, który Ci odpowiada.</p>
+
+        <div class="d-flex justify-content-center mt-4">
+            <a href="{% url 'calendar_view' %}" class="btn btn-primary btn-lg mx-2">Widok Kalendarza</a>
+            <a href="{% url 'monthly_view_default' %}" class="btn btn-secondary btn-lg mx-2">Widok Kafelkowy</a>
+        </div>
+    </div>
+{% endblock %}
