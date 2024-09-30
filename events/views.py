@@ -2,27 +2,19 @@ import requests
 from django.shortcuts import render
 from django.conf import settings
 from datetime import datetime, timedelta
-
 def get_events_from_api(tag=None):
-    url = f"{settings.API_BASE_URL}/events/"
-    headers = {'api-key': settings.API_KEY}
-    params = {}
-
-    if tag:
-        url = f"{settings.API_BASE_URL}/events/filter/"
-        params['tag'] = tag
+    api_key = settings.API_KEY
+    url = f'{settings.API_BASE_URL}/events/'
+    headers = {'api-key': api_key}
     
-    try:
-        response = requests.get(url, headers=headers, params=params)
-        response.raise_for_status() 
+    if tag:
+        url += f'?tag={tag}'
+    
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code == 200:
         return response.json()  
-    except requests.exceptions.HTTPError as http_err:
-        print(f"HTTP error occurred: {http_err}")
-        return []
-    except Exception as err:
-        print(f"Other error occurred: {err}")
-        return []
-
+    return []
 
 def monthly_view(request, year=None, month=None):
     current_year = datetime.now().year
@@ -89,3 +81,28 @@ def filter_events_by_tag(request):
     tag = request.GET.get('tag', None)
     events = get_events_from_api(tag=tag)
     return render(request, 'events/filtered_events.html', {'events': events, 'tag': tag})
+def get_available_tags_from_api():
+    api_key = settings.API_KEY
+    url = f'{settings.API_BASE_URL}/tags/'
+    headers = {'api-key': api_key}
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code == 200:
+        return response.json()  
+    return []
+def calendar_view(request):
+    selected_tag = request.GET.get('tag')  
+    events = get_events_from_api()
+    
+    available_tags = {tag['name'] for event in events for tag in event['tags']}
+    
+    if selected_tag:
+        events = [event for event in events if any(tag['name'] == selected_tag for tag in event['tags'])]
+    
+    return render(request, 'events/calendar_view.html', {
+        'events': events,
+        'tags': available_tags,
+        'selected_tag': selected_tag,
+        'year': datetime.now().year,
+        'month': datetime.now().month
+    })

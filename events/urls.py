@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.monthly_view, name='monthly_view_default'),  
     path('event/<int:event_id>/', views.event_detail, name='event_detail'),
     path('filter/', views.filter_events_by_tag, name='filter_events'),
+    path('calendar/', views.calendar_view, name='calendar_view'),  
 ]
