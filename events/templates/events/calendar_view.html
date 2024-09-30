@@ -25,31 +25,31 @@
 
     <style>
         .fc-daygrid-event, .fc-timegrid-event {
-            background-color: #d8eafc; /* Jasnoniebieskie tło dla każdego wydarzenia */
-            color: #004080; /* Ciemnoniebieski tekst */
-            border: 1px solid #004080; /* Obramowanie pasujące do koloru tekstu */
-            padding: 5px; /* Większe odstępy wewnętrzne */
-            border-radius: 4px; /* Delikatne zaokrąglenie rogów */
-            margin-bottom: 5px; /* Odstępy między wydarzeniami */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lekki cień */
-            text-align: center; /* Wycentrowanie tekstu */
-            white-space: normal; /* Zezwolenie na łamanie tekstu */
-            position: relative; /* Aby tooltip był związany z tym wydarzeniem */
+            background-color: #d8eafc; 
+            color: #004080;
+            border: 1px solid #004080; 
+            padding: 5px; 
+            border-radius: 4px; 
+            margin-bottom: 5px; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+            text-align: center; 
+            white-space: normal; 
+            position: relative; 
         }
 
         .fc-event-time {
             font-weight: bold;
-            color: #002a5e; /* Wyraźny kolor godzin */
-            display: block; /* Wyświetlanie w osobnej linii */
-            margin-bottom: 8px; /* Odstęp między godziną a tytułem */
+            color: #002a5e; 
+            display: block; 
+            margin-bottom: 8px; 
         }
 
         .fc-event-title {
             font-size: 1rem;
             color: #004080;
-            white-space: normal; /* Zezwolenie na zawijanie tekstu */
-            display: block; /* Wyświetlanie tytułu w osobnej linii */
-            margin-top: 0; /* Brak marginesu na górze */
+            white-space: normal;
+            display: block; 
+            margin-top: 0; 
         }
 
         .tooltip-kafel {
@@ -61,33 +61,31 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
-            display: none; /* Ukrycie tooltipa domyślnie */
+            display: none; 
             max-width: 200px;
-            width: 200px; /* Stała szerokość dla kwadratowego wyglądu */
+            width: 200px; 
             text-align: left;
-            top: -80px; /* Pozycjonowanie tooltipa nad wydarzeniem */
+            top: -80px; 
             left: 50%;
-            transform: translateX(-50%); /* Wycentrowanie tooltipa względem wydarzenia */
-            white-space: normal; /* Zezwolenie na zawijanie tekstu */
-            word-wrap: break-word; /* Zawijanie długich słów */
-            overflow: hidden; /* Ukrycie nadmiarowego tekstu, jeśli jest zbyt długi */
-            max-height: 150px; /* Maksymalna wysokość tooltipa */
-            overflow-y: auto; /* Pojawi się przewijanie, jeśli tekst jest zbyt długi */
+            transform: translateX(-50%); 
+            white-space: normal; 
+            word-wrap: break-word; 
+            overflow: hidden;
+            max-height: 150px; 
+            overflow-y: auto; 
         }
 
         .fc-daygrid-event:hover .tooltip-kafel, .fc-timegrid-event:hover .tooltip-kafel {
-            display: block; /* Wyświetlanie tooltipa na hover */
+            display: block; 
         }
     </style>    
 
     <div id="calendar"></div>
 
-    <!-- Skrypty Bootstrap oraz FullCalendar -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/locales/pl.js"></script>
 
-    <!-- CSS Bootstrap oraz FullCalendar -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.css" rel="stylesheet">
 
@@ -95,7 +93,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',  // Ustaw widok na startowy, np. miesięczny
+                initialView: 'dayGridMonth', 
                 locale: 'pl',
                 headerToolbar: {
                     left: 'prev,next today',
@@ -118,7 +116,6 @@
                     {% endfor %}
                 ],
                 eventDidMount: function(info) {
-                    // Dodaj tooltip z opisem na hover dla różnych widoków
                     var tooltip = document.createElement('div');
                     tooltip.classList.add('tooltip-kafel');
                     tooltip.innerText = info.event.extendedProps.description;
