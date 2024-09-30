@@ -5,9 +5,9 @@ Funkcjonalności
 Widok kalendarza: Możliwość przeglądania wydarzeń w widoku miesięcznym, tygodniowym i dziennym.
 Widok kafelkowy: Alternatywny widok kafelkowy do przeglądania wydarzeń w danym miesiącu.
 Filtracja po tagach: Umożliwia filtrowanie wydarzeń na podstawie przypisanych tagów.
-Szczegóły wydarzenia: Wyświetlanie szczegółowych informacji o wybranym wydarzeniu, w tym opisu, daty rozpoczęcia, lokalizacji i możliwości rejestracji (jeśli dostępna).
+Szczegóły wydarzenia: Wyświetlanie szczegółowych informacji o wybranym wydarzeniu, w tym opisu, daty rozpoczęcia, lokalizacji i możliwości rejestracji.
 Tooltipy z opisami: Wyświetlanie krótkich opisów wydarzeń po najechaniu na nie w widoku kalendarza.
-Strona główna: Wybór pomiędzy widokiem kalendarza a kafelkowym oraz podgląd nadchodzących wydarzeń.
+Strona główna: Wybór pomiędzy widokiem kalendarza a kafelkowym.
 Wymagania
 Zależności wymienione w pliku requirements.txt
 
@@ -31,5 +31,3 @@ Aplikacja będzie dostępna pod adresem: http://127.0.0.1:8000/
 
 Jak korzystać
 Po uruchomieniu serwera, przejdź pod adres http://127.0.0.1:8000/, gdzie zobaczysz stronę główną aplikacji. Możesz wybrać widok kalendarza lub kafelkowy, przeglądać wydarzenia, filtrować je po tagach oraz zobaczyć szczegóły wydarzeń.
-
-Aby dodać nowe wydarzenia, będziesz musiał to zrobić poprzez zewnętrzne API, z którego wydarzenia są pobierane.
