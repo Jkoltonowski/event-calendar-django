@@ -12,7 +12,7 @@ Django 4.x
 
 Instalacja
 Sklonuj repozytorium:
-git clone https://github.com/yourusername/event-calendar-django.git
+git clone https://github.com/jkoltonowski/event-calendar-django.git
 cd event-calendar-django
 
 Zainstaluj wymagane zależności:
